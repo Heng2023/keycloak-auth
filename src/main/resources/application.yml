@@ -1,0 +1,38 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/spring-keycloak # Replace with your Keycloak realm
+  main:
+    allow-bean-definition-overriding: true
+
+keycloak:
+  realm: spring-keycloak
+  resource: spring-app
+  auth-server-url: http://localhost:8080/
+  credentials:
+    secret: lEuTlhq0RDO6jbJJxVQWNFJc6PSHQlgJ
+    client-id: spring-app
+    provider: secret
+
+keycloak-admin:
+  username: admin # Replace with your Keycloak admin username
+  password: admin
+
+server:
+  port: 9090
+
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: spring-app
+      client-secret: lEuTlhq0RDO6jbJJxVQWNFJc6PSHQlgJ
+      realm: spring-keycloak
+    tags-sorter: alpha
+
+logging:
+  level:
+    root: INFO
+    org.example.keycloakauth.service: DEBUG
+
